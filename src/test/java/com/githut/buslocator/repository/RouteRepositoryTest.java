@@ -14,7 +14,8 @@ public class RouteRepositoryTest extends TestCase {
     private final File file = new File("build/repository-test.json");
 
     private void cleanup() {
-        if (file.exists()) {            assertTrue(file.delete());
+        if (file.exists()) {
+            assertTrue(file.delete());
         }
     }
 
