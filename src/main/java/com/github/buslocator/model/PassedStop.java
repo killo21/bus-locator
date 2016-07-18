@@ -1,4 +1,4 @@
-package com.github.buslocator;
+package com.github.buslocator.model;
 
 import java.util.Date;
 
