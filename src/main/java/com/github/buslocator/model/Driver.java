@@ -1,11 +1,11 @@
 package com.github.buslocator.model;
 
 public class Driver {
-    private final long id;
+    private long id;
 
-    private final String firstName;
+    private String firstName;
 
-    private final String lastName;
+    private String lastName;
 
     public Driver(long id, String firstName, String lastName) {
         this.id = id;
@@ -23,5 +23,17 @@ public class Driver {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

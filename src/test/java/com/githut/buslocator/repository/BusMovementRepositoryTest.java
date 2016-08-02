@@ -68,7 +68,9 @@ public class BusMovementRepositoryTest extends TestCase{
     private BusMovement createMockBusMovement (long id) {
         final List<PassedStop> passedStops = new ArrayList<>();
         Driver driver = new Driver(1,"Some", "Dude");
-        Bus bus = new Bus(1, driver);
+        Bus bus = new Bus();
+        bus.setId(1);
+        bus.setName("some name");
 
         //list of BusStops for Route
         final List<BusStop> busStops = new ArrayList<>();

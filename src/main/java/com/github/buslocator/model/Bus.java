@@ -1,20 +1,31 @@
 package com.github.buslocator.model;
 
 public class Bus {
-    private final long id;
+    private long id;
 
-    private final Driver driver;
-
-    public Bus(long id, Driver driver) {
-        this.id = id;
-        this.driver = driver;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
+    private String name;
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
