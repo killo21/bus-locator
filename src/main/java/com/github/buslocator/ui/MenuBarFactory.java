@@ -16,11 +16,10 @@ class MenuBarFactory {
       menu.setText(selectedItem.getText());
       parent.setContent(BusListGridFactory.create(repository));
     });
-    menu.addItem("Add New Bus", null,
-            (MenuBar.Command) selectedItem -> {
-              menu.setText(selectedItem.getText());
-              parent.setContent(BusInputFormFactory.create(repository));
-            });
+    menu.addItem("Add New Bus", null, (MenuBar.Command) selectedItem -> {
+      menu.setText(selectedItem.getText());
+      parent.setContent(BusInputFormFactory.create(repository));
+    });
     menu.addItem("Show All Routes", null, null);
     menu.addItem("Add New Route", null, null);
     return result;
