@@ -1,42 +1,50 @@
 package com.github.buslocator.ui;
 
 import com.github.buslocator.model.Bus;
+import com.github.buslocator.model.BusMovement;
+import com.github.buslocator.model.PassedStop;
+import com.github.buslocator.model.Route;
+import com.github.buslocator.repository.BusMovementRepository;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
+import com.vaadin.ui.*;
 
-public class BusInputFormFactory {
+import java.util.ArrayList;
 
-    private BusInputFormFactory() {
-    }
+class BusInputFormFactory {
 
-    public static FormLayout create(UI parent) {
-        FormLayout layout = new FormLayout();
-        layout.setCaption("Bus Input Form"); // TODO: figure out why it does not get
-        layout.addComponent(MenuBarFactory.create(parent));
+  private BusInputFormFactory() {
+  }
 
-        Bus bus = new Bus();
-        bus.setName("");
+  static Panel create(BusMovementRepository repository) {
+    Panel result = new Panel();
+    VerticalLayout layout = new VerticalLayout();
+    result.setContent(layout);
 
-        final BeanFieldGroup<Bus> binder = new BeanFieldGroup<>(Bus.class);
-        binder.setItemDataSource(bus);
-        layout.addComponent(binder.buildAndBind("Name", "name"));
+    Bus bus = new Bus();
+    bus.setName("");
 
-        binder.setBuffered(true);
-        layout.addComponent(new Button("OK", (Button.ClickListener) event -> {
-            try {
-                binder.commit();
-                Bus b = binder.getItemDataSource().getBean();
-                b.setId(1100);
-                Notification.show(b.toString());
-            } catch (FieldGroup.CommitException e) {
-                throw new IllegalStateException("Cannot process event: " + event, e);
-            }
-        }));
+    final BeanFieldGroup<Bus> binder = new BeanFieldGroup<>(Bus.class);
+    binder.setItemDataSource(bus);
+    layout.addComponent(binder.buildAndBind("Name", "name"));
 
-        return layout;
-    }
+    binder.setBuffered(true);
+    layout.addComponent(new Button("OK", (Button.ClickListener) event -> {
+      try {
+        binder.commit();
+        Bus b = binder.getItemDataSource().getBean();
+        b.setId(System.currentTimeMillis());
+        BusMovement bm = new BusMovement(System.currentTimeMillis(),
+                b,
+                new Route(System.currentTimeMillis(), "", new ArrayList<>()),
+                new ArrayList<>());
+        repository.save(bm);
+        Notification.show(b.toString());
+      } catch (Exception e) {
+        throw new IllegalStateException("Cannot process event: " + event, e);
+      }
+    }));
+
+    return result;
+  }
 }
