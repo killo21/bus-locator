@@ -22,7 +22,7 @@ class MenuBarFactory {
     });
     menu.addItem("Show All Routes", null, (MenuBar.Command) selectedItem -> {
       //menu.setText(selectedItem.getText());
-      //parent.setContent(RouteGridFactory.create(repository));
+      //parent.setContent(BusStopGridFactory.create(repository));
     });
     menu.addItem("Add New Route", null, (MenuBar.Command) selectedItem -> {
         menu.setText(selectedItem.getText());
