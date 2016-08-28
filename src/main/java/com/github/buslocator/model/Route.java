@@ -1,7 +1,7 @@
 package com.github.buslocator.model;
 
 
-import com.google.gwt.thirdparty.guava.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class Route {
 
   private String name;
 
-  private ImmutableList<BusStop> busStops;
+  private List<BusStop> busStops;
 
   public Route(long id, String name, List<BusStop> busStops) {
     this.id = id;

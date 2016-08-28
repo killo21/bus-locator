@@ -1,20 +1,23 @@
 package com.github.buslocator.repository;
 
 import com.github.buslocator.model.BusMovement;
-
-import com.github.buslocator.model.Route;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BusMovementRepository {
   private final File file;
 
   private final Map<Long, BusMovement> busMovementMap;
+
+  private final Gson gson = new GsonBuilder().create();
 
   public BusMovementRepository(File file) throws IOException {
     this.file = file;
@@ -38,7 +41,8 @@ public class BusMovementRepository {
 
   private Map<Long, BusMovement> convertJsonToBusMovementMap(String json) {
     final Gson gson = new Gson();
-    Type type = new TypeToken<Map<Long, BusMovement>>() {}.getType();
+    Type type = new TypeToken<Map<Long, BusMovement>>() {
+    }.getType();
     return gson.fromJson(json, type);
   }
 
@@ -48,7 +52,6 @@ public class BusMovementRepository {
   }
 
   private String convertMapToJson() {
-    final Gson gson = new Gson();
     return gson.toJson(busMovementMap);
   }
 

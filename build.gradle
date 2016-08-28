@@ -1,5 +1,5 @@
 plugins {
-    id 'fi.jasoft.plugin.vaadin' version '0.11.0-beta'
+  id 'fi.jasoft.plugin.vaadin' version '0.11.0-beta'
 }
 
 group 'com.github'
@@ -12,14 +12,17 @@ apply plugin: 'idea'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    compile "com.google.code.gson:gson:2.7"
-    testCompile "junit:junit:4.11"
+  compile "org.slf4j:jul-to-slf4j:1.7.21"
+  compile "ch.qos.logback:logback-classic:1.0.13"
+  compile "com.google.code.gson:gson:2.7"
+  compile 'com.google.guava:guava:19.0'
+  testCompile "junit:junit:4.11"
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+  gradleVersion = '2.13'
 }
