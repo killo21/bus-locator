@@ -2,10 +2,13 @@ package com.github.buslocator.repository;
 
 import com.github.buslocator.model.BusMovement;
 
+import com.github.buslocator.model.Route;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class BusMovementRepository {
@@ -35,7 +38,8 @@ public class BusMovementRepository {
 
   private Map<Long, BusMovement> convertJsonToBusMovementMap(String json) {
     final Gson gson = new Gson();
-    return gson.fromJson(json, Map.class);
+    Type type = new TypeToken<Map<Long, BusMovement>>() {}.getType();
+    return gson.fromJson(json, type);
   }
 
   public void save(BusMovement busMovement) throws IOException {

@@ -7,8 +7,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-class BusGridFactory {
-  private BusGridFactory() {
+class ShowAllBusesPanel {
+  private ShowAllBusesPanel() {
   }
 
   static Panel create(BusMovementRepository repository) {

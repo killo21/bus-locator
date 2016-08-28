@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RouteInputFormFactory {
-  private RouteInputFormFactory() {
+public class AddNewRoutePanel {
+  private AddNewRoutePanel() {
   }
 
   static Panel create(RouteRepository repository) {

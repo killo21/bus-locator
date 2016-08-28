@@ -11,9 +11,9 @@ import com.vaadin.ui.*;
 
 import java.util.ArrayList;
 
-class BusInputFormFactory {
+class AddNewBusPanel {
 
-  private BusInputFormFactory() {
+  private AddNewBusPanel() {
   }
 
   static Panel create(BusMovementRepository repository) {

@@ -1,11 +1,16 @@
 package com.github.buslocator.repository;
 
 
+import com.github.buslocator.model.BusMovement;
 import com.github.buslocator.model.Route;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RouteRepository {
@@ -35,7 +40,8 @@ public class RouteRepository {
 
   private Map<Long, Route> convertJsonToRouteMap(String json) {
     final Gson gson = new Gson();
-    return gson.fromJson(json, Map.class);
+    Type type = new TypeToken<Map<Long, Route>>() {}.getType();
+    return gson.fromJson(json, type);
   }
 
   public void save(Route route) {
@@ -61,5 +67,9 @@ public class RouteRepository {
 
   public Route load(long id) {
     return routeMap.get(id);
+  }
+
+  public List<Route> loadAll() {
+    return new ArrayList<>(routeMap.values());
   }
 }

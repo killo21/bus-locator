@@ -4,7 +4,7 @@ import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.ui.*;
 
-public class BusStopGridFactory {
+class BusStopGridFactory {
   private BusStopGridFactory() {
   }
 
@@ -19,8 +19,6 @@ public class BusStopGridFactory {
     grid.setCaption("Bus Stops");
     grid.setSizeFull();
     grid.setEditorEnabled(true);
-//    grid.addColumn("Bus Stop ID", Long.class);
-//    grid.addColumn("Bus Stop Name", String.class);
     layout.addComponent(grid);
 
     final Grid.MultiSelectionModel selection = (Grid.MultiSelectionModel) grid.getSelectionModel();

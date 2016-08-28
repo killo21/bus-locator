@@ -14,19 +14,19 @@ class MenuBarFactory {
     MenuBar.MenuItem menu = result.addItem("Menu", null, null);
     menu.addItem("Show All Buses", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
-      parent.setContent(BusGridFactory.create(busMovementRepository));
+      parent.setContent(ShowAllBusesPanel.create(busMovementRepository));
     });
     menu.addItem("Add New Bus", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
-      parent.setContent(BusInputFormFactory.create(busMovementRepository));
+      parent.setContent(AddNewBusPanel.create(busMovementRepository));
     });
     menu.addItem("Show All Routes", null, (MenuBar.Command) selectedItem -> {
-      //menu.setText(selectedItem.getText());
-      //parent.setContent(BusStopGridFactory.create(repository));
+      menu.setText(selectedItem.getText());
+      parent.setContent(ShowAllRoutesPanel.create(routeRepository));
     });
     menu.addItem("Add New Route", null, (MenuBar.Command) selectedItem -> {
         menu.setText(selectedItem.getText());
-        parent.setContent(RouteInputFormFactory.create(routeRepository));
+        parent.setContent(AddNewRoutePanel.create(routeRepository));
     });
     return result;
   }
