@@ -1,38 +1,23 @@
 package com.github.buslocator.model;
 
 
-import java.util.ArrayList;
+import com.google.gwt.thirdparty.guava.common.collect.ImmutableList;
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
 import java.util.List;
 
+@Immutable
 public class Route {
   private long id;
 
   private String name;
 
-  private List<BusStop> busStops;
-
-  public Route() {
-    this.id = 0L;
-    this.name = "";
-    this.busStops = new ArrayList<>();
-  }
+  private ImmutableList<BusStop> busStops;
 
   public Route(long id, String name, List<BusStop> busStops) {
     this.id = id;
     this.name = name;
-    this.busStops = busStops;
-  }
-
-  public void setBusStops(List<BusStop> busStops) {
-    this.busStops = busStops;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setId(long id) {
-    this.id = id;
+    this.busStops = ImmutableList.copyOf(busStops);
   }
 
   public long getId() {

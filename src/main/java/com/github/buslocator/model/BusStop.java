@@ -1,6 +1,8 @@
 package com.github.buslocator.model;
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
 
+@Immutable
 public class BusStop {
   private final long id;
 
@@ -22,8 +24,8 @@ public class BusStop {
   @Override
   public String toString() {
     return "BusStop{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
   }
 }

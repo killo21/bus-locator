@@ -1,24 +1,24 @@
 package com.github.buslocator.model;
 
-public class Bus {
-  private long id;
+import jdk.nashorn.internal.ir.annotations.Immutable;
 
-  private String name;
+@Immutable
+public class Bus {
+  private final long id;
+
+  private final String name;
+
+  public Bus(long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
   public long getId() {
     return id;
   }
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   @Override

@@ -5,15 +5,17 @@ import com.github.buslocator.model.BusMovement;
 import com.github.buslocator.model.PassedStop;
 import com.github.buslocator.model.Route;
 import com.github.buslocator.repository.BusMovementRepository;
+import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.ui.*;
 
 import java.util.ArrayList;
 
-class AddNewBusPanel {
+class AddNewBusPanelFactory {
 
-  private AddNewBusPanel() {
+  private AddNewBusPanelFactory() {
   }
 
   static Panel create(BusMovementRepository repository) {
@@ -21,19 +23,16 @@ class AddNewBusPanel {
     VerticalLayout layout = new VerticalLayout();
     result.setContent(layout);
 
-    Bus bus = new Bus();
-    bus.setName("");
+    Property<Long> busId = new ObjectProperty<>(0L);
+    Property<String> busName = new ObjectProperty<>("");
 
-    final BeanFieldGroup<Bus> binder = new BeanFieldGroup<>(Bus.class);
-    binder.setItemDataSource(bus);
-    layout.addComponent(binder.buildAndBind("Name", "name"));
+    layout.addComponent(new TextField("Bus ID", busId));
+    layout.addComponent(new TextField("Bus Name", busName));
 
-    binder.setBuffered(true);
+
     layout.addComponent(new Button("OK", (Button.ClickListener) event -> {
       try {
-        binder.commit();
-        Bus b = binder.getItemDataSource().getBean();
-        b.setId(System.currentTimeMillis());
+        Bus b = new Bus(busId.getValue(), busName.getValue());
         BusMovement bm = new BusMovement(System.currentTimeMillis(),
                 b,
                 new Route(System.currentTimeMillis(), "", new ArrayList<>()),

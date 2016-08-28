@@ -4,7 +4,7 @@ import com.github.buslocator.model.Route;
 import com.github.buslocator.repository.RouteRepository;
 import com.vaadin.ui.*;
 
-class ShowAllRoutesPanel {
+class ShowAllRoutesPanelFactory {
   static Component create(RouteRepository routeRepository) {
     Panel result = new Panel();
     Layout layout = new VerticalLayout();

@@ -10,13 +10,12 @@ import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.ui.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddNewRoutePanel {
-  private AddNewRoutePanel() {
+class AddNewRoutePanelFactory {
+  private AddNewRoutePanelFactory() {
   }
 
   static Panel create(RouteRepository repository) {
