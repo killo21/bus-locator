@@ -25,8 +25,8 @@ class MenuBarFactory {
       parent.setContent(ShowAllRoutesPanel.create(routeRepository));
     });
     menu.addItem("Add New Route", null, (MenuBar.Command) selectedItem -> {
-        menu.setText(selectedItem.getText());
-        parent.setContent(AddNewRoutePanel.create(routeRepository));
+      menu.setText(selectedItem.getText());
+      parent.setContent(AddNewRoutePanel.create(routeRepository));
     });
     return result;
   }
