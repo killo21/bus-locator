@@ -2,6 +2,7 @@ package com.githut.buslocator.repository;
 
 import com.github.buslocator.model.*;
 import com.github.buslocator.repository.BusMovementRepository;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BusMovementRepositoryTest {
@@ -43,8 +43,8 @@ public class BusMovementRepositoryTest {
     repository.save(savedBusMovement);
 
     final BusMovement loadedBusMovcment = repository.load(savedBusMovement.getId());
-    assertEquals(loadedBusMovcment.getId(), savedBusMovement.getId());
-    assertEquals(loadedBusMovcment.getBus(), savedBusMovement.getBus());
+    Assert.assertEquals(loadedBusMovcment.getId(), savedBusMovement.getId());
+    Assert.assertEquals(loadedBusMovcment.getBus(), savedBusMovement.getBus());
     cleanup();
   }
 
@@ -59,13 +59,33 @@ public class BusMovementRepositoryTest {
     repository.save(savedBusMovement2);
 
     final BusMovement loadedBusMovement1 = repository.load(savedBusMovement1.getId());
-    assertEquals(loadedBusMovement1.getId(), savedBusMovement1.getId());
-    assertEquals(loadedBusMovement1.getBus(), savedBusMovement1.getBus());
+    Assert.assertEquals(loadedBusMovement1.getId(), savedBusMovement1.getId());
+    Assert.assertEquals(loadedBusMovement1.getBus(), savedBusMovement1.getBus());
     final BusMovement loadedBusMovement2 = repository.load(savedBusMovement2.getId());
-    assertEquals(loadedBusMovement2.getId(), savedBusMovement2.getId());
-    assertEquals(loadedBusMovement2.getBus(), savedBusMovement2.getBus());
+    Assert.assertEquals(loadedBusMovement2.getId(), savedBusMovement2.getId());
+    Assert.assertEquals(loadedBusMovement2.getBus(), savedBusMovement2.getBus());
 
     cleanup();
+  }
+
+  @Test
+  public void testShouldRemoveBusMovementBySpecifiedId() throws Exception {
+    cleanup();
+    assertFalse(file.exists());
+
+    {
+      final BusMovementRepository repository = new BusMovementRepository(file);
+      Assert.assertEquals(0, repository.loadAll().size());
+      final BusMovement savedBusMovement1 = createMockBusMovement(1);
+      repository.save(savedBusMovement1);
+      Assert.assertEquals(1, repository.loadAll().size());
+      repository.remove(1);
+    }
+
+    {
+      final BusMovementRepository repository = new BusMovementRepository(file);
+      Assert.assertEquals(0, repository.loadAll().size());
+    }
   }
 
   private BusMovement createMockBusMovement(long id) {

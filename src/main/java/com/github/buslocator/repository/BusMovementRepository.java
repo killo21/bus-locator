@@ -48,11 +48,11 @@ public class BusMovementRepository {
 
   public void save(BusMovement busMovement) throws IOException {
     busMovementMap.put(busMovement.getId(), busMovement);
-    saveStringIntoFile(convertMapToJson());
+    saveStringIntoFile(convertMapToJson(busMovementMap));
   }
 
-  private String convertMapToJson() {
-    return gson.toJson(busMovementMap);
+  private String convertMapToJson(Map<Long, BusMovement> map) {
+    return gson.toJson(map);
   }
 
   private void saveStringIntoFile(String json) throws IOException {
@@ -68,5 +68,10 @@ public class BusMovementRepository {
 
   public List<BusMovement> loadAll() {
     return new ArrayList<>(busMovementMap.values());
+  }
+
+  public void remove(long id) throws IOException {
+    busMovementMap.remove(id);
+    saveStringIntoFile(convertMapToJson(busMovementMap));
   }
 }
