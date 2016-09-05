@@ -9,25 +9,18 @@ import java.util.List;
 public class BusMovement {
   private final long id;
 
-  private final Bus bus;
-
   private final Route route;
 
   private final List<PassedStop> passedStops;
 
-  public BusMovement(long id, Bus bus, Route route, List<PassedStop> passedStops) {
+  public BusMovement(long id, Route route, List<PassedStop> passedStops) {
     this.id = id;
-    this.bus = bus;
     this.route = route;
     this.passedStops = ImmutableList.copyOf(passedStops);
   }
 
   public long getId() {
     return id;
-  }
-
-  public Bus getBus() {
-    return bus;
   }
 
   public Route getRoute() {

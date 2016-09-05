@@ -44,7 +44,6 @@ public class BusMovementRepositoryTest {
 
     final BusMovement loadedBusMovcment = repository.load(savedBusMovement.getId());
     Assert.assertEquals(loadedBusMovcment.getId(), savedBusMovement.getId());
-    Assert.assertEquals(loadedBusMovcment.getBus(), savedBusMovement.getBus());
     cleanup();
   }
 
@@ -60,10 +59,8 @@ public class BusMovementRepositoryTest {
 
     final BusMovement loadedBusMovement1 = repository.load(savedBusMovement1.getId());
     Assert.assertEquals(loadedBusMovement1.getId(), savedBusMovement1.getId());
-    Assert.assertEquals(loadedBusMovement1.getBus(), savedBusMovement1.getBus());
     final BusMovement loadedBusMovement2 = repository.load(savedBusMovement2.getId());
     Assert.assertEquals(loadedBusMovement2.getId(), savedBusMovement2.getId());
-    Assert.assertEquals(loadedBusMovement2.getBus(), savedBusMovement2.getBus());
 
     cleanup();
   }
@@ -90,8 +87,6 @@ public class BusMovementRepositoryTest {
 
   private BusMovement createMockBusMovement(long id) {
     final List<PassedStop> passedStops = new ArrayList<>();
-    Driver driver = new Driver(1, "Some", "Dude");
-    Bus bus = new Bus(1, "some name");
 
     //list of BusStops for Route
     final List<BusStop> busStops = new ArrayList<>();
@@ -103,6 +98,6 @@ public class BusMovementRepositoryTest {
       passedStops.add(new PassedStop(i, LocalDateTime.now(), busStops.get(i)));
     }
     final Route route = new Route(1, "TestRoute", busStops);
-    return new BusMovement(id, bus, route, passedStops);
+    return new BusMovement(id, route, passedStops);
   }
 }

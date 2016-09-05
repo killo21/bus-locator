@@ -12,13 +12,13 @@ class MenuBarFactory {
   static MenuBar create(Panel parent, BusMovementRepository busMovementRepository, RouteRepository routeRepository) {
     MenuBar result = new MenuBar();
     MenuBar.MenuItem menu = result.addItem("Menu", null, null);
-    menu.addItem("Show All Buses", null, (MenuBar.Command) selectedItem -> {
+    menu.addItem("Bus Driver Interface", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
-      parent.setContent(ShowAllBusesPanelFactory.create(busMovementRepository));
+      parent.setContent(BusDriverInterfaceFactory.create(busMovementRepository, routeRepository));
     });
-    menu.addItem("Add New Bus", null, (MenuBar.Command) selectedItem -> {
+    menu.addItem("User Interface", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
-      parent.setContent(AddNewBusPanelFactory.create(busMovementRepository));
+//      parent.setContent(ShowAllBusesPanelFactory.create(busMovementRepository));
     });
     menu.addItem("Show All Routes", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
