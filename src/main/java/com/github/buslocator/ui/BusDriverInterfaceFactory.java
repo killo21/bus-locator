@@ -89,7 +89,12 @@ public class BusDriverInterfaceFactory {
     back.addClickListener(new Button.ClickListener() {
       @Override
       public void buttonClick(Button.ClickEvent event) {
+        BusMovement updatedBusMovement = reportPreviousStop(busMovement.getId(), busMovementRepository);
         Notification.show("Back button was pressed");
+        container.removeAllItems();
+        for (BusStop busStop : updatedBusMovement.getRoute().getBusStops()) {
+          grid.addRow(busStop.getId(), busStop.getName(), isPassed(updatedBusMovement.getPassedStops(), busStop));
+        }
       }
     });
     layout.addComponent(grid);
@@ -113,6 +118,23 @@ public class BusDriverInterfaceFactory {
         }
         return updatedBusMovement;
       }
+    }
+    return busMovement;
+  }
+
+  private static BusMovement reportPreviousStop(Long busMovementId, BusMovementRepository busMovementRepository) {
+    BusMovement busMovement = busMovementRepository.load(busMovementId);
+    ArrayList<PassedStop> updatedPassedStops = new ArrayList<>(busMovement.getPassedStops());
+    final int passedStopsNum = updatedPassedStops.size();
+    if (passedStopsNum > 0) {
+      updatedPassedStops.remove(passedStopsNum - 1);
+      BusMovement updatedBusMovement = new BusMovement(busMovement.getId(), busMovement.getRoute(), updatedPassedStops);
+      try {
+        busMovementRepository.save(updatedBusMovement);
+      } catch (IOException e) {
+        throw new IllegalStateException("Cannot save busMovement" + updatedBusMovement);
+      }
+      return updatedBusMovement;
     }
     return busMovement;
   }
