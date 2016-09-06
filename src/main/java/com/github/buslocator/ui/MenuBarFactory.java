@@ -18,7 +18,7 @@ class MenuBarFactory {
     });
     menu.addItem("User Interface", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
-//      parent.setContent(ShowAllBusesPanelFactory.create(busMovementRepository));
+      parent.setContent(UserInterfaceFactory.create(busMovementRepository));
     });
     menu.addItem("Show All Routes", null, (MenuBar.Command) selectedItem -> {
       menu.setText(selectedItem.getText());
