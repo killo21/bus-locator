@@ -46,7 +46,7 @@ public class BusMovementRepository {
     return gson.fromJson(json, type);
   }
 
-  public void save(BusMovement busMovement) throws IOException {
+  public synchronized void save(BusMovement busMovement) throws IOException {
     busMovementMap.put(busMovement.getId(), busMovement);
     saveStringIntoFile(convertMapToJson(busMovementMap));
   }
@@ -62,15 +62,15 @@ public class BusMovementRepository {
     }
   }
 
-  public BusMovement load(long id) {
+  public synchronized BusMovement load(long id) {
     return busMovementMap.get(id);
   }
 
-  public List<BusMovement> loadAll() {
+  public synchronized List<BusMovement> loadAll() {
     return new ArrayList<>(busMovementMap.values());
   }
 
-  public void remove(long id) throws IOException {
+  public synchronized void remove(long id) throws IOException {
     busMovementMap.remove(id);
     saveStringIntoFile(convertMapToJson(busMovementMap));
   }

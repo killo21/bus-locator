@@ -13,10 +13,12 @@ import com.vaadin.ui.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterfaceFactory {
   public static Panel create(BusMovementRepository busMovementRepository) {
+
     Panel result = new Panel();
     Layout layout = new VerticalLayout();
 
@@ -43,7 +45,29 @@ public class UserInterfaceFactory {
       grid.addRow(it.getId(), it.getRoute().getName(), it.getRoute().getBusStops().size(), lastStopName, lastStopTimestamp);
     }
 
+    Button refresh = new Button ("Refresh Page");
+    refresh.addClickListener(new Button.ClickListener() {
+      @Override
+      public void buttonClick(Button.ClickEvent event) {
+        container.removeAllItems();
+        for (BusMovement it : busMovementRepository.loadAll()) {
+          List<PassedStop> passedStops = it.getPassedStops();
+          String lastStopName = "Not Reported";
+          LocalDateTime lastStopTimestamp = null;
+          if (passedStops.size() > 0) {
+            PassedStop last = passedStops.get(passedStops.size() - 1);
+            lastStopName = last.getBusStop().getName();
+            lastStopTimestamp = last.getTimestamp();
+          }
+          grid.addRow(it.getId(), it.getRoute().getName(), it.getRoute().getBusStops().size(), lastStopName, lastStopTimestamp);
+        }
+      }
+    });
+
+
+
     layout.addComponent(grid);
+    layout.addComponent(refresh);
     result.setContent(layout);
     return result;
   }

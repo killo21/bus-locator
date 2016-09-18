@@ -47,7 +47,7 @@ public class RouteRepository {
     return gson.fromJson(json, type);
   }
 
-  public void save(Route route) {
+  public synchronized void save(Route route) {
     routeMap.put(route.getId(), route);
     try {
       saveStringIntoFile(convertMapToJson());
@@ -67,11 +67,11 @@ public class RouteRepository {
     }
   }
 
-  public Route load(long id) {
+  public synchronized Route load(long id) {
     return routeMap.get(id);
   }
 
-  public List<Route> loadAll() {
+  public synchronized List<Route> loadAll() {
     return new ArrayList<>(routeMap.values());
   }
 }

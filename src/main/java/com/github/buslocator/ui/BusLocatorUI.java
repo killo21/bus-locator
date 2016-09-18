@@ -19,11 +19,11 @@ public class BusLocatorUI extends UI {
     SLF4JBridgeHandler.install();
   }
 
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
-  private final BusMovementRepository busMovementRepository = createBusMovementRepository();
-  private final RouteRepository routeRepository = createRouteRepository();
+  private static final Logger logger = LoggerFactory.getLogger(BusLocatorUI.class);
+  private static final BusMovementRepository busMovementRepository = createBusMovementRepository();
+  private static final RouteRepository routeRepository = createRouteRepository();
 
-  private BusMovementRepository createBusMovementRepository() {
+  private static BusMovementRepository createBusMovementRepository() {
     try {
       return new BusMovementRepository(new File("./busMovements.json"));
     } catch (Exception e) {
@@ -31,7 +31,7 @@ public class BusLocatorUI extends UI {
     }
   }
 
-  private RouteRepository createRouteRepository() {
+  private static RouteRepository createRouteRepository() {
     try {
       return new RouteRepository(new File("./routes.json"));
     } catch (Exception e) {
