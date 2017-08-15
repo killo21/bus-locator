@@ -1,0 +1,11 @@
+.BusStop-form{
+  margin-left: 5%;
+  margin-right: 50%;
+  flex-direction: column;
+  display: flex;
+  align-items: left;
+  background-color: #CFD8DC;
+  border: 1px solid #B0BEC5;
+}
+
+

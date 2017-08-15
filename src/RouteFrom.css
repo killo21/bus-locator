@@ -1,0 +1,19 @@
+.Route-form{
+  margin-left: 5%;
+  margin-right: 50%;
+  flex-direction: column;
+  display: flex;
+  align-items: left;
+  background-color: #CFD8DC;
+  border: 1px solid #B0BEC5;
+}
+
+label{
+  margin-left: 5px;
+
+}
+
+h3{
+  font-size: 1.5em;
+  margin-left: 5px;
+}
