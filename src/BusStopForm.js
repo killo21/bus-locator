@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Form} from 'mui-react';
-import {Input} from 'mui-react';
-import {Textarea} from 'mui-react';
-import {Button} from 'mui-react'
 import './BusStopForm.css';
 
 class BusStopForm extends Component {
@@ -29,25 +24,23 @@ class BusStopForm extends Component {
   render() {
     return (
       <div>
-        <form className="mui-form" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div className="BusStop-form">
-            <legend>Submit a Bus Stop</legend>
-            <div className="mui-textfield mui-textfield--float-label">
+            <h3>Submit a Bus Stop</h3>
+            <label>Stop ID:<br />
               <input type="text" name="id" value={this.state.id} onChange={this.handleInputChange}/>
-              <label>Stop ID</label>
-            </div>
+            </label>
+            
             <br />
             <br />
-            <div className="mui-textfield mui-textfield--float-label">
+            <label>Stop Name:<br />
               <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange}/>
-              <label>Stop Name:</label>
-            </div>
+            </label>
             <br />
             <br />
-            <div className="mui-textfield mui-textfield--float-label">
+            <label>Route: <br />
               <input type="text" name="route" value={this.state.route} onChange={this.handleInputChange}/>
-              <label>Route</label>
-            </div>
+            </label>
             <br />
             <br />
             <input type="submit" value="Submit" />
