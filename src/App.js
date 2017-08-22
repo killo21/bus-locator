@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import RouteForm from './RouteForm';
-import BusStopForm from './BusStopForm';
+
 
 class App extends Component {
   render() {
@@ -14,9 +13,14 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div>Hello {this.props.name}</div>
-        <RouteForm />
-        <br />
-        <BusStopForm />
+        <h4>Welcome to the High Tech High School Bus Services Application</h4>
+        <h3>Lorem ipsum dolor sit amet, pri agam eirmod et.
+          Vis alterum dissentiunt ex, in harum iuvaret adipisci
+          per. Id malis laboramus per, semper mediocrem pri te, 
+          odio mandamus mediocrem vis in. Ut ceteros offendit noluisse
+          mea, congue utroque duo at. Id agam epicurei erroribus sea.
+          </h3>
+
       </div>
       
     );
