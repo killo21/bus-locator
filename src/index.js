@@ -12,7 +12,7 @@ import registerServiceWorker from './registerServiceWorker';
 const Root = () => (
   <Router>
     <div>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" render={(props) => (<App name="Dmitry" />)} />
       <Route exact path="/add-route" component={RouteForm} />
       <Route exact path="/add-bus-stop" component={BusStopForm} />
     </div>
